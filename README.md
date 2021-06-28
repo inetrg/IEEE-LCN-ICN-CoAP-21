@@ -1,1 +1,1 @@
-# IEEE-LCN-ICN-CoAP-21
+# Group Communication with OSCORE: RESTful Multiparty Access to a Data-Centric Web of Things (IEEE LCN 2021)
