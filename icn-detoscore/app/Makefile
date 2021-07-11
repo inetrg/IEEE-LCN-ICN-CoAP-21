@@ -1,0 +1,65 @@
+APPLICATION ?= app
+RIOTBASE ?= $(CURDIR)/../RIOT
+#RIOTBASE ?= /home/cgundogan/git/github/cgundogan/RIOT
+
+BOARD ?= native
+DEVELHELP ?= 1
+
+USEMODULE += gnrc_netdev_default
+USEMODULE += auto_init_gnrc_netif
+USEMODULE += gnrc_ipv6_router_default
+USEMODULE += gnrc_icmpv6_echo
+USEMODULE += gcoap
+USEMODULE += od
+USEMODULE += gcoap_forward_proxy
+USEMODULE += nanocoap_cache
+
+USEMODULE += shell
+USEMODULE += shell_commands
+USEMODULE += ps
+USEMODULE += netstats_l2
+USEMODULE += gnrc_netif_events
+
+BOARD ?= native
+
+DEFAULT_CHANNEL=15
+
+CFLAGS += -DGCOAP_STACK_SIZE="THREAD_STACKSIZE_DEFAULT + DEBUG_EXTRA_STACKSIZE + sizeof(coap_pkt_t) + 3500"
+CFLAGS += -DTHREAD_STACKSIZE_MAIN="THREAD_STACKSIZE_DEFAULT + THREAD_EXTRA_STACKSIZE_PRINTF + 1000"
+
+CFLAGS += -DCONFIG_GCOAP_PDU_BUF_SIZE=128
+CFLAGS += -DCONFIG_GNRC_IPV6_NIB_NUMOF=14
+CFLAGS += -DCONFIG_GNRC_IPV6_NIB_OFFL_NUMOF=14
+CFLAGS += -DCONFIG_GCOAP_REQ_WAITING_MAX=94
+CFLAGS += -DCONFIG_GCOAP_RESEND_BUFS_MAX=94
+CFLAGS += -DCONFIG_COAP_RANDOM_FACTOR_1000=1000
+CFLAGS += -DCONFIG_GCOAP_NO_RETRANS_BACKOFF
+CFLAGS += -DCONFIG_COAP_MAX_RETRANSMIT=3
+CFLAGS += -DCONFIG_COAP_ACK_TIMEOUT=2
+#CFLAGS += -DSOCK_MBOX_SIZE=32
+#CFLAGS += -DSOCK_DTLS_MBOX_SIZE=32
+#CFLAGS += -DCOAP_ACK_VARIANCE=0
+#CFLAGS += -DCONFIG_GCOAP_NO_RETRANS_BACKOFF=1
+CFLAGS += -DCONFIG_NANOCOAP_CACHE_ENTRIES=40
+CFLAGS += -DCONFIG_GNRC_IPV6_NIB_NO_RTR_SOL=1
+CFLAGS += -DCONFIG_GNRC_IPV6_NIB_ADV_ROUTER=0
+#CFLAGS += -DCONFIG_GNRC_IPV6_NIB_ARSM=0
+CFLAGS += -DCONFIG_GNRC_IPV6_NIB_SLAAC=1
+
+USEMODULE += random
+
+# C11 features are accepted in the OSCORE implementation, but that causes
+# pedantic Werrors to show up in RIOT source; gnu11 seems to ignore those.
+CFLAGS += -std=gnu11
+
+# libOSCORE
+EXTERNAL_MODULE_DIRS += ../liboscore/backends/riot-module
+
+USEMODULE += oscore
+# and picking suitable backends
+USEMODULE += libcose_crypt_hacl
+USEMODULE += libcose_crypt_tinydtls
+USEMODULE += prng_sha256prng
+
+include $(RIOTBASE)/Makefile.include
+include $(RIOTMAKE)/default-radio-settings.inc.mk

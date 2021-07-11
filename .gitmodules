@@ -1,3 +1,9 @@
 [submodule "ndn/RIOT"]
 	path = ndn/RIOT
 	url = https://github.com/cgundogan/RIOT.git
+[submodule "icn-oscore/RIOT"]
+	path = icn-detoscore/RIOT
+	url = https://github.com/cgundogan/RIOT.git
+[submodule "icn-detoscore/liboscore"]
+	path = icn-detoscore/liboscore
+	url = https://gitlab.com/oscore/liboscore.git
