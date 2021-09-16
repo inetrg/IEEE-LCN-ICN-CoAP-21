@@ -14,6 +14,5 @@ In: Proc. of 46th IEEE Conference on Local Computer Networks, p. XX, Piscataway,
 Please follow our [Getting Started](getting-started.md) instructions for further information on how to compile and execute the code.
 
 <!-- TODO: update URLs -->
-[paper-link]:https://github.com/inetrg/IEEE-LCN-ICN-CoAP-21
-<!-- [paper-badge]:https://img.shields.io/badge/Paper-IEEE%20Xplore-green -->
-[paper-badge]:https://img.shields.io/badge/Paper-IEEE%20Xplore-gray
+[paper-link]:https://doi.org/10.1109/LCN52139.2021.9525000
+[paper-badge]:https://img.shields.io/badge/Paper-IEEE%20Xplore-green
